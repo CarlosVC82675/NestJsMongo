@@ -2,10 +2,10 @@
 //basicamente lidar com  as requisições HTTP extraindo os dados para o service(camada de negocio)
 
 import { Body, Controller, Post, Get, Param, HttpException, Patch, Delete } from "@nestjs/common";
-import { UsersService } from "./users.services";
-import { createUserDTO } from "./dto/CreateUser.dto";
+import { UsersService } from "../services/users.services";
+import { createUserDTO } from "../dto/CreateUser.dto";
 import mongoose from "mongoose";
-import { updateUserDTO } from "./dto/UpdateUser.dto";
+import { updateUserDTO } from "../dto/UpdateUser.dto";
 
 @Controller('user')
 export class UserController{

@@ -2,8 +2,8 @@ import { Injectable, HttpException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { user } from "src/schemas/User.schema";
-import { createUserDTO } from "./dto/CreateUser.dto";
-import { updateUserDTO } from "./dto/UpdateUser.dto";
+import { createUserDTO } from "../dto/CreateUser.dto";
+import { updateUserDTO } from "../dto/UpdateUser.dto";
 
 
 @Injectable() //marcar a classe como injetavel  e pode ser usada em outros lugares alem de adicionar dependências automaticamente.
