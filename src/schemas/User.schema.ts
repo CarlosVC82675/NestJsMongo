@@ -1,6 +1,7 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
 import * as bcrypt from 'bcrypt';
+import { userSettings } from "./UserSettings.schema";
 
 @Schema()
 export class user extends Document{
@@ -18,6 +19,9 @@ export class user extends Document{
 
    @Prop({required: false})
    avatarUrl: String;
+
+   @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'UserSettings'})
+   settings?: userSettings;
 
 }
 

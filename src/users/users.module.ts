@@ -3,15 +3,20 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { user, UserSchema } from 'src/schemas/User.schema';
 import { UsersService } from './users.services';
 import { UserController } from './users.controller';
+import { userSettings, userSettingsSchema } from 'src/schemas/UserSettings.schema';
  
 @Module({
     imports: [
         MongooseModule.forFeature([
             {
-                name: user.name,
+                name: user.name, 
                 schema: UserSchema,
 
-            },
+            }, 
+            {
+                name: userSettings.name,
+                schema: userSettingsSchema,
+            } ,
         ]),
     ],
     providers: [UsersService], //registrar serviços(classes injetveis) que o modulo tem que conhecer
