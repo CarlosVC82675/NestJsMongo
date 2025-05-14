@@ -1,7 +1,7 @@
 import { Injectable, HttpException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { user } from "src/schemas/User.schema";
+import { User } from "src/schemas/User.schema";
 import { createUserDTO } from "../dto/CreateUser.dto";
 import { updateUserDTO } from "../dto/UpdateUser.dto";
 
@@ -13,7 +13,7 @@ export class UsersService {
     // metodo construtor da classe
     constructor
     (  
-        @InjectModel(user.name) private userModel: Model<user>
+        @InjectModel(User.name) private userModel: Model<User>
 
         //injeta o modelo mongoose da coleção de usuarios
         //o argumento desse decorador é o nome do modelo(schma) e da propriedade criada no users.module

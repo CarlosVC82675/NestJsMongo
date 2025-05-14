@@ -1,10 +1,10 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import * as bcrypt from 'bcrypt';
-import { userSettings } from "./UserSettings.schema";
+import { UserSettings } from "./UserSettings.schema";
 
 @Schema()
-export class user extends Document{
+export class User extends Document{
    @Prop({required: true}) 
    nomeUsuario: string;
 
@@ -21,11 +21,11 @@ export class user extends Document{
    avatarUrl: String;
 
    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'UserSettings'})
-   settings?: userSettings;
+   settings?: UserSettings;
 
 }
 
-export const UserSchema = SchemaFactory.createForClass(user); 
+export const UserSchema = SchemaFactory.createForClass(User); 
 //  transforma a classe user em um schema do Mongoose e criar um objeto "Userschema que pode ser usado para configurar comportamentos adicionais ou importalo"
 
 console.log("aqui rodou pai(o shema de usuario no caso)");

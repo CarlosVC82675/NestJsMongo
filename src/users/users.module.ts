@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { user, UserSchema } from 'src/schemas/User.schema';
+import { User, UserSchema } from 'src/schemas/User.schema';
 import { UsersService } from './services/users.services';
 import { UserController } from './controller/users.controller';
-import { userSettings, userSettingsSchema } from 'src/schemas/UserSettings.schema';
+import { UserSettings, userSettingsSchema } from 'src/schemas/UserSettings.schema';
 import { UserSettingsService } from './services/usersSettings.services';
 import { UserSettingsController } from './controller/usersSettings.controller';
  
@@ -11,12 +11,12 @@ import { UserSettingsController } from './controller/usersSettings.controller';
     imports: [
         MongooseModule.forFeature([
             {
-                name: user.name, 
+                name: User.name, 
                 schema: UserSchema,
 
             }, 
             {
-                name: userSettings.name,
+                name: UserSettings.name,
                 schema: userSettingsSchema,
             } ,
         ]),

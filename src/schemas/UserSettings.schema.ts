@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema()
-export class userSettings {
+export class UserSettings {
 
 @Prop({required: false})
 recebernotificacao?: boolean;
@@ -14,7 +14,7 @@ receberSMS?: boolean;
 
 }
 
-export const userSettingsSchema = SchemaFactory.createForClass(userSettings);
+export const userSettingsSchema = SchemaFactory.createForClass(UserSettings);
 
 
 
