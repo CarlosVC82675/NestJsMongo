@@ -1,0 +1,32 @@
+
+Arquivo com objetivo de guardar exemplos de possibilidades de codigo que foram retiradas ou seriam uteis em outras situações:
+
+
+// Codigo de criação de usuarios e informações adicionais usando operador espalhado para fazer a criação das informaçoes e depois e criar o usuario
+
+ async createUser({additionalinfo, ...UserDTO}: createUserDTO){
+        //Quando esse metodo for chamado a validação provavelmente ja vai ter sido feita la no controller.
+        //criando o documento de usuario
+        //criando uma nova instância do seu modelo mongoose
+        try{
+            if(additionalinfo){
+                const newinfo = new this.userAddInfoModel(additionalinfo);
+                const saveinfo = await newinfo.save();  
+                const newuser = new this.userModel({...createUserDTO, additionalinfo: saveinfo._id,});      
+                return newuser.save();
+            }
+            const newUser = new this.userModel(UserDTO); 
+            await newUser.save();
+            return newUser;
+        }
+        catch(error){ //lidando com erro de duplicidade e outros
+            if(error.code === 11000){
+                throw new HttpException('E-mail ou apelido já cadastrado', 400);
+            }else{
+                console.error(error); //log de desenvolvedor
+                throw new HttpException(' Erro ao criar Usuario', 500)
+            }
+                
+        }
+    
+    }

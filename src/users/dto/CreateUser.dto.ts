@@ -3,9 +3,32 @@
 // ela é uma classe usada para definir o formato dos dados que são enviados
 
 import { Type } from "class-transformer";
-import { IsEmail, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength, ValidateNested } from "class-validator";
+import { IsDate, IsEmail, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength, ValidateNested } from "class-validator";
 import { Types } from "mongoose";
 import { createUserSettingsDto } from "./CreateUserSettings.dto";
+
+
+// classe de addinfo
+
+export class userAddInfoDTO{
+
+@IsDate()
+@IsOptional()
+datanascimento?: Date;
+
+@IsOptional()
+@IsString()
+bio?: string;
+
+@IsOptional()
+@IsString()
+idioma?: string;
+
+@IsOptional()
+@IsString()
+redessociais?: string
+
+}
 
 // usada para validações, padronização, separar responsabilidades e evitar que dados inseguros passem adiate
 export class createUserDTO {
@@ -42,5 +65,9 @@ export class createUserDTO {
    //settings?: createUserSettingsDto; : basicamente dizendo que quando criar usuario o objeto de configuração 
    // vai ta junto , dados completos, ideal para subdocumentos ou criações simultâneas.
 
+   @IsOptional()
+   @ValidateNested()
+   @Type(()=>userAddInfoDTO)
+   additionalinfo?: userAddInfoDTO;
    
 }

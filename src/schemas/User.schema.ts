@@ -2,6 +2,7 @@ import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import * as bcrypt from 'bcrypt';
 import { UserSettings } from "./UserSettings.schema";
+import { UserAddInfo } from "./UserAddInfo.schema";
 
 @Schema()
 export class User extends Document{
@@ -22,6 +23,10 @@ export class User extends Document{
 
    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'UserSettings'})
    settings?: UserSettings;
+
+   @Prop({type: UserAddInfo, required: false})
+   additionalinfo?: UserAddInfo;
+
 
 }
 

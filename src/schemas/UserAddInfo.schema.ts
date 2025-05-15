@@ -6,16 +6,16 @@ import { Document } from "mongoose";
 export class UserAddInfo extends Document {
 
 @Prop({type: Date, required: false})
-datanascimento: Date;
+datanascimento?: Date;
 
 @Prop({required: false})
-bio: string;
+bio?: string;
 
 @Prop({required:false})
-idioma: string;
+idioma?: string;
 
 @Prop({required:false})
-redessociais: string
+redessociais?: string
 
 }
 

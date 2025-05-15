@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import { User } from "src/schemas/User.schema";
 import { createUserDTO } from "../dto/CreateUser.dto";
 import { updateUserDTO } from "../dto/UpdateUser.dto";
+import { UserAddInfo } from "src/schemas/UserAddInfo.schema";
 
 
 @Injectable() //marcar a classe como injetavel  e pode ser usada em outros lugares alem de adicionar dependências automaticamente.
@@ -13,7 +14,7 @@ export class UsersService {
     // metodo construtor da classe
     constructor
     (  
-        @InjectModel(User.name) private userModel: Model<User>
+        @InjectModel(User.name) private userModel: Model<User>,
 
         //injeta o modelo mongoose da coleção de usuarios
         //o argumento desse decorador é o nome do modelo(schma) e da propriedade criada no users.module
@@ -25,17 +26,20 @@ export class UsersService {
 
         //o tipo Model<users> vem do Mongoose, para trabalhar com documentos que seguem a interface/classe user
         //registra o formato da classe user no typescript que ajuda na edição e verificação de erros e etc
+
+       
     )
     {}
 
     //metodos que vao interagir com o banco
     //dto = objeto de transferencia
+    //Tira propriedades de um objeto
    async createUser(UserDTO: createUserDTO){
         //Quando esse metodo for chamado a validação provavelmente ja vai ter sido feita la no controller.
         //criando o documento de usuario
         //criando uma nova instância do seu modelo mongoose
         try{
-            const newUser = new this.userModel(UserDTO);
+            const newUser = new this.userModel(UserDTO); 
             await newUser.save();
             return newUser;
         }
