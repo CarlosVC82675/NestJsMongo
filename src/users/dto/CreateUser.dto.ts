@@ -14,6 +14,7 @@ export class userAddInfoDTO{
 
 @IsDate()
 @IsOptional()
+@Type(()=> Date) //converte string em data
 datanascimento?: Date;
 
 @IsOptional()

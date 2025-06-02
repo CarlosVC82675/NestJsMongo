@@ -62,7 +62,8 @@ export class UsersService {
 
      //metodo para chamar usuario pelo id
     getUserById(id: string){
-        return this.userModel.findById(id);
+        // se tivesse uma referencia a outro documento ou modulo seria additionalinfo.nomedomodulo
+        return this.userModel.findById(id).populate('settings');
     }
 
     updateUser(id:string, updateuser:updateUserDTO){
