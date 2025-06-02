@@ -3,6 +3,8 @@ import mongoose, { Document } from "mongoose";
 import * as bcrypt from 'bcrypt';
 import { UserSettings } from "./UserSettings.schema";
 import { UserAddInfo } from "./UserAddInfo.schema";
+import { Post } from "./Post.schema";
+import { ref } from "process";
 
 @Schema()
 export class User extends Document{
@@ -27,6 +29,11 @@ export class User extends Document{
    @Prop({type: UserAddInfo, required: false})
    additionalinfo?: UserAddInfo;
 
+   // Relacionamente de um para muito, um usuario para muitas postagens
+   // [] a matriz se refere a varias postagens que o usuario podera fazer
+   // no moongo, isso vai ser uma matriz de ids e nao de objetos
+   @Prop({type:[{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]})
+   posts: Post[];
 
 }
 

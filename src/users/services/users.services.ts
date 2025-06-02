@@ -18,7 +18,7 @@ export class UsersService {
 
         //injeta o modelo mongoose da coleção de usuarios
         //o argumento desse decorador é o nome do modelo(schma) e da propriedade criada no users.module
-        // como o modelo foi ceiado no users.module o nestjs ja sabe qual schema usa
+        // como o modelo foi criado no users.module o nestjs ja sabe qual schema usa
 
         //private userModel: é a instancia do modelo que representa a coleção no banco do mongo
         //pode ser usado como: this.usermodel.find(), create(),fundbyid() e etc
@@ -57,7 +57,7 @@ export class UsersService {
 
     //metodo para chamar todos os usuarios
     getsUsers(){
-        return this.userModel.find();
+        return this.userModel.find().populate(['settings','posts']);
     }
 
      //metodo para chamar usuario pelo id
