@@ -15,8 +15,8 @@ constructor
     @InjectModel(User.name) private UserModel : Model<User>,   
 ){}
 
-async createPost({autorid, ... createPost}: createPostDto){
-    const findUser = await this.UserModel.findById(autorid);
+async createPost(createPost: createPostDto){
+    const findUser = await this.UserModel.findById(createPost.author);
     if(!findUser) throw new HttpException('User not found',404);
     const newPost = new this.PostModel(createPost);
     const savedPost = await newPost.save();

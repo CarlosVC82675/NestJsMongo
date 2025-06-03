@@ -1,4 +1,6 @@
+
 import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { Types } from "mongoose";
 
 export class createPostDto {
 
@@ -11,9 +13,10 @@ export class createPostDto {
     @IsNotEmpty()
     @MaxLength(500)
     conteudo: string;
-
-    @IsString()
+ 
     @IsNotEmpty()
-    autorid: string;
+    author: Types.ObjectId;
+
+
 
 }
