@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Types } from "mongoose";
 import * as bcrypt from 'bcrypt';
 import { UserSettings } from "./UserSettings.schema";
 import { UserAddInfo } from "./UserAddInfo.schema";
@@ -33,7 +33,12 @@ export class User extends Document{
    // [] a matriz se refere a varias postagens que o usuario podera fazer
    // no moongo, isso vai ser uma matriz de ids e nao de objetos
    @Prop({type:[{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]})
-   posts: Post[];
+    posts?: Types.ObjectId[];
+
+   //Relação de muitos pra muitos
+   @Prop({type:[{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]})
+   likedPost?: Types.ObjectId[];
+
 
 }
 
